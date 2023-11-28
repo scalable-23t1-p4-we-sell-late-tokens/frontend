@@ -9,9 +9,19 @@
   </v-app>
 
   <div id="order-user">
-    <h1>
-      Welcome {{ username }}
-    </h1>
+    <v-btn class="order" @click="order" rounded border>Order</v-btn>
+    <v-btn class="order-failed-at-create-order" @click="order(`create-order`)" rounded border>
+      Order: failed at create order service
+    </v-btn>
+    <v-btn class="order-failed-at-process-payment" @click="order(`process-payment`)" rounded border>
+      Order: failed at process-payment service
+    </v-btn>
+    <v-btn class="order-failed-at-update-inventory" @click="order(`update-inventory`)" rounded border>
+      Order: failed at update inventory service
+    </v-btn>
+    <v-btn class="order-failed-at-delivery-order" @click="order(`delivery-order`)" rounded border>
+      Order: failed at delivery order service
+    </v-btn>
   </div>
 
 </template>
@@ -30,6 +40,24 @@ export default {
   methods: {
     logout() {
       this.$router.replace({ path: "/" })
+    },
+    // TODO: change the function to call appropriate API calls
+    order(text) {
+      if(text === "create-order") {
+        alert("create-order")
+      }
+      else if(text === "process-payment") {
+        alert("process-payment")
+      }
+      else if(text === "update-inventory") {
+        alert("update-inventory")
+      }
+      else if(text === "delivery-order") {
+        alert("delivery-order")
+      }
+      else {
+        alert("You are the domo")
+      }
     }
   }
 }
@@ -39,6 +67,11 @@ export default {
 #order-user {
   display: flex;
   place-items: center;
+  margin-top: 200px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 500px;
+  max-height: 400px;
 }
 
 .custom-icon {
@@ -54,6 +87,31 @@ export default {
   margin: 10px;
 }
 
+
+.order {
+  flex-basis: 100%;
+  background-color: #4CAF50;
+}
+
+.order-failed-at-create-order {
+  flex-basis: 100%;
+  background-color: #B00020;
+}
+
+.order-failed-at-process-payment {
+  flex-basis: 100%;
+  background-color: #B00020;
+}
+
+.order-failed-at-update-inventory {
+  flex-basis: 100%;
+  background-color: #B00020;
+}
+
+.order-failed-at-delivery-order {
+  flex-basis: 100%;
+  background-color: #B00020;
+}
 @media (min-width: 1024px) {
   #order-user {
     display: flex;
