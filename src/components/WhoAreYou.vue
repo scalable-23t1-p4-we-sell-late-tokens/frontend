@@ -1,7 +1,3 @@
-<script setup>
-import router from "@/router";
-</script>
-
 <template>
   <main>
     <h1>
@@ -33,7 +29,6 @@ import router from "@/router";
 </template>
 
 <script>
-  import router from "@/router";
   import OrderPage from "@/components/OrderPage.vue";
 
   export default {
@@ -53,7 +48,7 @@ import router from "@/router";
         this.loading = false
 
         if(results.valid) {
-          this.$router.push({ name: OrderPage, params: { username: this.userName } });
+          this.$router.replace({ name: OrderPage, params: { username: this.userName } });
         }
         // alert(JSON.stringify(results, null, 2))
       },
