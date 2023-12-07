@@ -42,21 +42,120 @@ export default {
       this.$router.replace({ path: "/" })
     },
     // TODO: change the function to call appropriate API calls
-    order(text) {
+    async order(text) {
+      const username = this.$route.params.username;
+      const itemName = "token";
+      const amount = 1;
+      const price = 20
       if(text === "create-order") {
-        alert("create-order")
+        try {
+
+          const messageFlag = "order";
+
+          const urlWithParams = `/api/order/create?username=${username}&item_name=${itemName}&amount=${amount}&price=${price}&message_flag=${messageFlag}`;
+
+          const response = await fetch(urlWithParams, {
+            method: 'POST',
+          });
+
+          if (response.ok) {
+            const responseData = await response.text();
+            console.log('Response:', responseData);
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+
       }
       else if(text === "process-payment") {
-        alert("process-payment")
+
+        try {
+          const messageFlag = "payment";
+
+          const urlWithParams = `/api/order/create?username=${username}&item_name=${itemName}&amount=${amount}&price=${price}&message_flag=${messageFlag}`;
+
+          const response = await fetch(urlWithParams, {
+            method: 'POST',
+          });
+
+          if (response.ok) {
+            const responseData = await response.text();
+            console.log('Response:', responseData);
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+
       }
       else if(text === "update-inventory") {
-        alert("update-inventory")
+
+        try {
+          const messageFlag = "inventory";
+
+          const urlWithParams = `/api/order/create?username=${username}&item_name=${itemName}&amount=${amount}&price=${price}&message_flag=${messageFlag}`;
+
+          const response = await fetch(urlWithParams, {
+            method: 'POST',
+          });
+
+          if (response.ok) {
+            const responseData = await response.text();
+            console.log('Response:', responseData);
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+
       }
       else if(text === "delivery-order") {
-        alert("delivery-order")
+
+        try {
+          const messageFlag = "delivery";
+
+          const urlWithParams = `/api/order/create?username=${username}&item_name=${itemName}&amount=${amount}&price=${price}&message_flag=${messageFlag}`;
+
+          const response = await fetch(urlWithParams, {
+            method: 'POST',
+          });
+
+          if (response.ok) {
+            const responseData = await response.text();
+            console.log('Response:', responseData);
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+
       }
       else {
-        alert("You are the domo")
+
+        try {
+          const messageFlag = "SUCCESS";
+
+          const urlWithParams = `/api/order/create?username=${username}&item_name=${itemName}&amount=${amount}&price=${price}&message_flag=${messageFlag}`;
+
+          const response = await fetch(urlWithParams, {
+            method: 'POST',
+          });
+
+          if (response.ok) {
+            const responseData = await response.text();
+            console.log('Response:', responseData);
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+
       }
     }
   }
