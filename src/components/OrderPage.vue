@@ -42,6 +42,22 @@
     >
       Order: failed at delivery order service
     </v-btn>
+    <v-btn
+      class="order-insufficient_funds"
+      @click="order(`insufficient_funds-order`)"
+      rounded
+      border
+    >
+      Order: insufficeint funds
+    </v-btn>
+    <v-btn
+      class="order-item_not_found"
+      @click="order(`item_not_found-order`)"
+      rounded
+      border
+    >
+      Order: item not found
+    </v-btn>
   </div>
 </template>
 
@@ -68,9 +84,7 @@ export default {
       const price = 10;
       if (text === "create-order") {
         try {
-          const messageFlag = "order";
-
-          const urlWithParams = `/api/order/create?username=${username}&product=${itemName}&amount=${amount}&price=${price}&message_flag=${messageFlag}`;
+          const urlWithParams = `/api/order/fail?username=${username}&product=${itemName}&amount=${amount}&price=${price}`;
 
           const response = await fetch(urlWithParams, {
             method: "POST",
@@ -128,6 +142,44 @@ export default {
           const messageFlag = "delivery";
 
           const urlWithParams = `/api/order/create?username=${username}&product=${itemName}&amount=${amount}&price=${price}&message_flag=${messageFlag}`;
+
+          const response = await fetch(urlWithParams, {
+            method: "POST",
+          });
+
+          if (response.ok) {
+            const responseData = await response.text();
+            console.log("Response:", responseData);
+          } else {
+            console.error("Error:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      } else if (text === "insufficient_funds-order") {
+        try {
+          const messageFlag = "SUCCESS";
+
+          const urlWithParams = `/api/order/create?username=${username}&product=${itemName}&amount=5&price=${price}&message_flag=${messageFlag}`;
+
+          const response = await fetch(urlWithParams, {
+            method: "POST",
+          });
+
+          if (response.ok) {
+            const responseData = await response.text();
+            console.log("Response:", responseData);
+          } else {
+            console.error("Error:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      } else if (text === "item_not_found-order") {
+        try {
+          const messageFlag = "SUCCESS";
+
+          const urlWithParams = `/api/order/create?username=${username}&product=Coke&amount=${amount}&price=${price}&message_flag=${messageFlag}`;
 
           const response = await fetch(urlWithParams, {
             method: "POST",
@@ -214,6 +266,17 @@ export default {
   flex-basis: 100%;
   background-color: #b00020;
 }
+
+.order-insufficient_funds {
+  flex-basis: 100%;
+  background-color: #b00020;
+}
+
+.order-item_not_found {
+  flex-basis: 100%;
+  background-color: #b00020;
+}
+
 @media (min-width: 1024px) {
   #order-user {
     display: flex;
